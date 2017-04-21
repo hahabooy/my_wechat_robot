@@ -175,7 +175,7 @@ def tuling_reply(msg):  # the main function used for message processing
             annoy_to_close = u' '  # to 提示小博可以被关闭
             if len(msg["Text"]) < 10:  # if short than 20, then do feature identify, and give detailed query way.
                 if u'关' in msg["Text"] or u'烦' in msg["Text"]:
-                    annoy_to_close= u'\n如果觉得我很烦，可以发送<关闭>关掉我哦-.- \n'
+                    annoy_to_close= u'\n如果觉得我很烦，可以发送<关闭>二字关掉我哦-.- \n'
             special_reply = special_function(msg["Text"])
             if special_reply:
                 return special_reply
@@ -185,7 +185,7 @@ def tuling_reply(msg):  # the main function used for message processing
             if sender_alias not in open_reminder:
                 return first_greetings_CN
             elif u'小博' in msg["Text"]:
-                return u'miss me? 你知道要发送"开始"让我主人把我打开，对吧？'
+                return u'miss me? 你知道要发送"开始"两个字让我主人把我打开，对吧？'
             else:
                 pass
 
