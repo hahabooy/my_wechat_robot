@@ -3,6 +3,7 @@
 
 I only try *python2.7*, but those packages all avaliable on python3
 
+A chinese blog can be finded at [http://xuzhenbo.com/blog/booy-study-3/post/130]
 
 hello, everyone. This is my little wechat robot using tuling123 robot [http://www.tuling123.com/] and itchat [https://pypi.python.org/pypi/itchat/1.3.5]. I add auto google-translate in my code. And you can add anything you want. By using python subprocess to run other program, or custom your own features.
 
