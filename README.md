@@ -19,3 +19,5 @@ for guess_language, "pip install guess_language" has some problems in my Ubuntu 
 In code, I deal with two language, it seems a little Redundant, but the text in py file can be deleted and modified.
 
 Useful comments are contained in the py code. Hope your wechat more colorful!
+
+Ultimate reminder: when you run the py code and it runs correctly, you will see a big QR graph for your phone wechat to scan to log in. If you don't use black background and white font color, the QR graph is strange and not useable.
