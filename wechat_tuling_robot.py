@@ -96,8 +96,9 @@ def write_reminderDB():
 
 def special_function(text): # special features you can add, here I add google-translate, by use '#' before the message send to me
     if len(text) < 20:  # if short than 20, then do feature identify, and give detailed explain to every feature.
-        if u'google' in text or u'谷歌' in text:
-            return u'Please put "#" and the language you want to transfer, "#en" or "#zh", before the text you want to translate, only support chinese and english. for example, \n you can also let me know which language you want by, for example, \n"#en 你还好么" will return "are you right?"\n"#zh are you right?" will return "你还好么"'
+        if u'google' in text or u'谷歌' in text or u'翻译' in text:
+            # return u'Please put "#" and the language you want to transfer, "#en" or "#zh", before the text you want to translate, only support chinese and english. for example, \n you can also let me know which language you want by, for example, \n"#en 你还好么" will return "are you right?"\n"#zh are you right?" will return "你还好么"'
+            return u'请将您要翻译成的语言放置在井号后面，"#en"代表翻译成英文，"#zh"代表翻译成中文, 比如说： \n"#en 你还好么"会返回 "are you right?"\n"#zh are you right?"会返回 "你还好么"。理论上，翻译的文字多少不受影响，不要粘一本书就好哈 \n'
     # elif ... #other special uses
     # else:
     #     return 0
