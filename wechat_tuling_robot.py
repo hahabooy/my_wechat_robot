@@ -98,17 +98,29 @@ def special_function(text): # special features you can add, here I add google-tr
     if len(text) < 20:  # if short than 20, then do feature identify, and give detailed explain to every feature.
         if u'google' in text or u'谷歌' in text or u'翻译' in text:
             # return u'Please put "#" and the language you want to transfer, "#en" or "#zh", before the text you want to translate, only support chinese and english. for example, \n you can also let me know which language you want by, for example, \n"#en 你还好么" will return "are you right?"\n"#zh are you right?" will return "你还好么"'
-            return u'请将您要翻译成的语言放置在井号后面，"#en"代表翻译成英文，"#zh"代表翻译成中文, 比如说： \n"#en 你还好么"会返回 "are you right?"\n"#zh are you right?"会返回 "你还好么"。理论上，翻译的文字多少不受影响，不要粘一本书就好哈 \n'
+            return u'欢迎使用google翻译升级版，我可以自动检测语言。只需您将要翻译的文字放置在井号后面，比如\n"# 你还好么"（输入中没有引号，只需加一个＃）会返回 "are you right?你还好么"\n 理论上，翻译的文字多少不受影响，不要粘一本书就好哈 \n'
     # elif ... #other special uses
     # else:
     #     return 0
     if text[0] == u'#':  # #means 'google translate'
-        des_lang = 'en' if u'en' in text[1:4] else'zh-CN'
+        # des_lang = 'en' if u'en' in text[1:4] else'zh-CN'
         ans = '暂时无法连接translate.google, sorry about that.'
-        try:
-            ans = translate(text[3:].encode('utf8', 'ignore'), des_lang)
-        except:
-            pass
+        des_lang = guessLanguage[1:]
+        if des_lang == 'en':
+            try:
+                ans = translate(text[1:].encode('utf8', 'ignore'), 'zh-CN')
+            except:
+                return ans
+        elif des_lang == 'zh':
+            try:
+                ans = translate(text[1:].encode('utf8', 'ignore'), 'en')
+            except:
+                return ans
+        else:
+            try:
+                ans = translate(text[1:].encode('utf8', 'ignore'), 'en') + translate(text[1:].encode('utf8', 'ignore'), 'zh-CN')
+            except:
+                return ans
         return ans
     return
 
@@ -184,6 +196,8 @@ def tuling_reply(msg):  # the main function used for message processing
             return tt + annoy_to_close or defaultReply_CN + annoy_to_close  # .decode('unicode-escape')
         else:
             if sender_alias not in open_reminder:
+                open_reminder.append(sender_alias)
+                write_reminderDB()
                 return first_greetings_CN
             elif u'小博' in msg["Text"]:
                 return u'miss me? 你知道要发送"开始"两个字让我主人把我打开，对吧？'
